@@ -1,0 +1,3 @@
+/home/ivan/CLionProjects/commi-par/cmake-build-debug/CMakeFiles/commi_par.dir
+/home/ivan/CLionProjects/commi-par/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ivan/CLionProjects/commi-par/cmake-build-debug/CMakeFiles/rebuild_cache.dir
