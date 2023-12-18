@@ -22,7 +22,7 @@ int main() {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    int n = 10;
+    int n = 12;
 
     int** dm = new int*[n + 1];
     dm[0] = new int[(n + 1) * (n + 1)];
@@ -54,13 +54,18 @@ int main() {
 
     MPI_Bcast(*dm, (n + 1) * (n + 1), MPI_INT, 0, MPI_COMM_WORLD);
 
-    vector<int> route(n);
-    vector<int> end(n);
+
+    int* route = new int[n];
+//    vector<int> route(n);
+    int* end = new int[n];
+    int* minRoute = new int[n];
+//    vector<int> end(n);
     for (int i = 0; i < n; i++) {
         route[i] = i + 1;
+        minRoute[i] = i + 1;
         end[i] = -1;
     }
-    vector<int> minRoute = route;
+//    vector<int> minRoute = route;
     int minDist = INT32_MAX;
 
     double start = MPI_Wtime();
@@ -68,21 +73,21 @@ int main() {
     if (rank == 0) {
 
         int k = 0;
+
         do {
             int r = k % (size - 1) + 1;
 
             MPI_Send(&route[0], n, MPI_INT, r, 777, MPI_COMM_WORLD);
             k++;
-        } while (next_permutation(route.begin(), route.end()));
+        } while (next_permutation(route, route + n));
 
         for (int i = 1; i < size; i++)
             MPI_Send(&end[0], n, MPI_INT, i, 777, MPI_COMM_WORLD);
     } else {
 
+        int *pos = new int[n];
         int sum;
         while (true) {
-            int *pos = new int[n];
-
             MPI_Recv(pos, n, MPI_INT, 0, 777, MPI_COMM_WORLD, &stat);
 
             if (pos[0] == -1)
@@ -101,10 +106,10 @@ int main() {
             }
         }
 
-        minRoute.insert(minRoute.begin(), 0);
+//        minRoute.insert(minRoute.begin(), 0);
     }
 
-    MPI_Gather(&minRoute[0], n + 1, MPI_INT, dm[0], n + 1, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Gather(&minRoute[0], n, MPI_INT, dm[0], n + 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Gather(&minDist, 1, MPI_INT, &end[0], 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     if (rank == 0) {
@@ -116,8 +121,8 @@ int main() {
 
         double final = MPI_Wtime();
 
-        cout << "\nMin route = ";
-        for (int i = 0; i < n + 1; i++)
+        cout << "\nMin route = 0 ";
+        for (int i = 0; i < n; i++)
             cout << dm[minIndex][i] << ' ';
         cout << "; min way length = " << end[minIndex] << endl;
         cout << "\nTime spent = " << final - start << endl;
