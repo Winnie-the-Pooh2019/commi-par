@@ -3,4 +3,4 @@ project(commi_par)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(commi_par main.cpp par.cpp)
+add_executable(commi_par main.cpp par.cpp indus.cpp sasha.cpp par2.cpp m.cpp)

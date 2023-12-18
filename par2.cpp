@@ -37,11 +37,13 @@ vector<int> nth_permutation(vector<int> &arr, long long n) {
     return ans;
 }
 
-int findCost(int **matrix, vector<int> &arr) {
-    int cost = 0;
+int findCost(int**& matrix, vector<int>& arr) {
+    int cost = matrix[arr[0]][0];
 
-    for (int i = 1; i < (int) arr.size(); i++)
+    for (int i = 1; i < arr.size(); i++)
         cost += matrix[arr[i]][arr[i - 1]];
+
+    cost += matrix[0][arr[arr.size() - 1]];
 
     return cost;
 }
@@ -97,8 +99,6 @@ int main(int argc, char *argv[]) {
 
     int optimal_value = INT32_MAX;
 
-    // divide among PEs
-
     int permPerProc = fact[n - 1] / size;
     int rem = fact[n - 1] % size;
 
@@ -127,14 +127,11 @@ int main(int argc, char *argv[]) {
     vector<int> routeEnd = nth_permutation(route, endPermInd);
 
     do {
-        vector<int> temp = routeBegin;
-        temp.push_back(0);
-        temp.insert(temp.begin(), 0);
-        int val = findCost(matrix, temp);
+        int val = findCost(matrix, routeBegin);
 
         if (val < optimal_value) {
             optimal_value = val;
-            minRoute = temp;
+            minRoute = routeBegin;
         }
 
         if (routeBegin == routeEnd)

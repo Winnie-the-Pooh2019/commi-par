@@ -61,6 +61,30 @@ build CMakeFiles/commi_par.dir/par.cpp.o: CXX_COMPILER__commi_par_Debug /home/iv
   OBJECT_DIR = CMakeFiles/commi_par.dir
   OBJECT_FILE_DIR = CMakeFiles/commi_par.dir
 
+build CMakeFiles/commi_par.dir/indus.cpp.o: CXX_COMPILER__commi_par_Debug /home/ivan/CLionProjects/commi-par/indus.cpp || cmake_object_order_depends_target_commi_par
+  DEP_FILE = CMakeFiles/commi_par.dir/indus.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/commi_par.dir
+  OBJECT_FILE_DIR = CMakeFiles/commi_par.dir
+
+build CMakeFiles/commi_par.dir/sasha.cpp.o: CXX_COMPILER__commi_par_Debug /home/ivan/CLionProjects/commi-par/sasha.cpp || cmake_object_order_depends_target_commi_par
+  DEP_FILE = CMakeFiles/commi_par.dir/sasha.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/commi_par.dir
+  OBJECT_FILE_DIR = CMakeFiles/commi_par.dir
+
+build CMakeFiles/commi_par.dir/par2.cpp.o: CXX_COMPILER__commi_par_Debug /home/ivan/CLionProjects/commi-par/par2.cpp || cmake_object_order_depends_target_commi_par
+  DEP_FILE = CMakeFiles/commi_par.dir/par2.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/commi_par.dir
+  OBJECT_FILE_DIR = CMakeFiles/commi_par.dir
+
+build CMakeFiles/commi_par.dir/m.cpp.o: CXX_COMPILER__commi_par_Debug /home/ivan/CLionProjects/commi-par/m.cpp || cmake_object_order_depends_target_commi_par
+  DEP_FILE = CMakeFiles/commi_par.dir/m.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/commi_par.dir
+  OBJECT_FILE_DIR = CMakeFiles/commi_par.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target commi_par
@@ -69,7 +93,7 @@ build CMakeFiles/commi_par.dir/par.cpp.o: CXX_COMPILER__commi_par_Debug /home/iv
 #############################################
 # Link the executable commi_par
 
-build commi_par: CXX_EXECUTABLE_LINKER__commi_par_Debug CMakeFiles/commi_par.dir/main.cpp.o CMakeFiles/commi_par.dir/par.cpp.o
+build commi_par: CXX_EXECUTABLE_LINKER__commi_par_Debug CMakeFiles/commi_par.dir/main.cpp.o CMakeFiles/commi_par.dir/par.cpp.o CMakeFiles/commi_par.dir/indus.cpp.o CMakeFiles/commi_par.dir/sasha.cpp.o CMakeFiles/commi_par.dir/par2.cpp.o CMakeFiles/commi_par.dir/m.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/commi_par.dir
   POST_BUILD = :

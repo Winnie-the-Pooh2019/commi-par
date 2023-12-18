@@ -2,27 +2,26 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-#include <string>
-#include <bits/stdc++.h>
 #include "mpi/mpi.h"
 
 class TravellingSalesman {
 public:
     static std::pair<int, std::vector<int>> findOptimalRoute(std::vector<std::vector<int>>& distanceMatrix) {
-        int n = distanceMatrix.size() - 1;
+        int n = distanceMatrix.size();
         std::vector<int> route(n);
         for (int i = 0; i < n; i++) {
-            route[i] = i + 1;
+            route[i] = i;
         }
 
         std::vector<int> minRoute(n);
         int minDistance = INT32_MAX;
 
         do {
-            int currentDistance = distanceMatrix[0][route[0]];
-            for (int i = 1; i < n; i++)
-                currentDistance += distanceMatrix[route[i - 1]][route[i]];
-            currentDistance += distanceMatrix[route[n - 1]][0];
+            int currentDistance = 0;
+            for (int i = 0; i < n - 1; i++) {
+                currentDistance += distanceMatrix[route[i]][route[i + 1]];
+            }
+            currentDistance += distanceMatrix[route[n - 1]][route[0]];
 
             if (currentDistance < minDistance) {
                 minDistance = currentDistance;
